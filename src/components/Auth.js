@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { authActions } from "../store/index";
 
 import classes from "./Auth.module.css";
@@ -7,7 +7,6 @@ import classes from "./Auth.module.css";
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
 
   const emailChangeHandler = (e) => {
@@ -37,7 +36,7 @@ const Auth = () => {
     dispatch(authActions.login());
   };
 
-  return (!isAuthenticated && (
+  return (
     <main className={classes.auth}>
       <section>
         <form onSubmit={submitHandler}>
@@ -63,7 +62,6 @@ const Auth = () => {
         </form>
       </section>
     </main>
-  )
   );
 };
 
